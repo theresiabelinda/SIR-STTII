@@ -7,6 +7,6 @@
     <title>Kategori</title>
 </head>
 <body>
-    <h1>Category</h1>
+    <h1>Kelas 1 Lilllyyyijeif</h1>
 </body>
 </html>
