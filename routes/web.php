@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,14 @@ Route::group(['middleware' => 'auth:user'], function(){
         Route::get('/profile',[App\Http\Controllers\DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::get('/reset-password',[App\Http\Controllers\DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
         Route::post('/reset-password',[App\Http\Controllers\DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
+    
+        Route::get('/kategori',[App\Http\Controllers\KategoriController::class,'index'])->name('kategori.index');
+        Route::get('/kategori/tambah',[App\Http\Controllers\KategoriController::class,'tambah'])->name('kategori.tambah');
+        Route::post('/kategori/prosesTambah',[App\Http\Controllers\KategoriController::class,'prosesTambah'])->name('kategori.prosesTambah');
+        Route::get('/kategori/ubah/{id}',[App\Http\Controllers\KategoriController::class,'ubah'])->name('kategori.ubah');
+        Route::post('/kategori/prosesUbah',[App\Http\Controllers\KategoriController::class,'prosesUbah'])->name('kategori.prosesUbah');
+        Route::get('/kategori/hapus/{id}',[App\Http\Controllers\KategoriController::class,'hapus'])->name('kategori.hapus');
+        Route::get('/kategori/export-pdf',[App\Http\Controllers\KategoriController::class,'exportPdf'])->name('kategori.exportPdf');
     });
 
     Route::get('/logout',[App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
