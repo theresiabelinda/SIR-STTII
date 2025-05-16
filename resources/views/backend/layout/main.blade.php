@@ -59,19 +59,19 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route ("berita.index")}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Data Berita</span></a>
+                    <span>Data Upload File</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route ("kategori.index")}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Kategori</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route ("user.index")}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data User</span></a>
             </li>

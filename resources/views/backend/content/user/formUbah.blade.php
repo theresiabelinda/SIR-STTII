@@ -24,6 +24,15 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Password User</label>
+                        <input type="text" name="password" value="{{ old('password') }}"
+                            class="form-control @error('password') is-invalid @enderror">
+                        @error('password')
+                            <span style="color: red ; font-weight: 600; font-soxe: 9pt">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
                     <input type="hidden" name="id" value="{{ $user->id }}">
                     <button type="submit" class="btn btn-primary">Ubah</button>
                     <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>

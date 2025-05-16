@@ -21,12 +21,13 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
+            'password' => 'required|min:10' #diisi dengan nim mahasiswa
 
         ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt('12345678');
+        $user->password = bcrypt($request->password);
 
         try{
             $user->save();
