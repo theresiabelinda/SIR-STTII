@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,13 @@ Route::group(['middleware' => 'auth:user'], function(){
         Route::get('/profile',[App\Http\Controllers\DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::get('/reset-password',[App\Http\Controllers\DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
         Route::post('/reset-password',[App\Http\Controllers\DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
+
+        Route::get('/user',[UserController::class, 'index'])->name('user.index');
+        Route::get('/user/tambah',[UserController::class, 'tambah'])->name('user.tambah');
+        Route::post('/user/prosesTambah',[UserController::class, 'prosesTambah'])->name('user.prosesTambah');
+        Route::get('/user/ubah/{id}',[UserController::class, 'ubah'])->name('user.ubah');
+        Route::post('/user/prosesUbah',[UserController::class, 'prosesUbah'])->name('user.prosesUbah');
+        Route::get('/user/hapus/{id}',[UserController::class, 'hapus'])->name('user.hapus');
     });
 
     Route::get('/logout',[App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
