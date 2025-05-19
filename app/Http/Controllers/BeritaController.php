@@ -96,9 +96,9 @@ class BeritaController extends Controller
 
         try {
             $berita->save();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil ubah data']);
+            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil ubah jurnal']);
         }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal ubah data']);
+            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal ubah jurnal']);
         }
     }
 
@@ -111,9 +111,9 @@ class BeritaController extends Controller
                 Storage::delete('public/jurnal/' . $berita->file);
             }
             $berita->delete();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil hapus data']);
+            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil hapus jurnal']);
         }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal hapus data']);
+            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal hapus jurnal']);
         }
     }
 }
