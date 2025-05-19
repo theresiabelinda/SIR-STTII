@@ -26,6 +26,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul</th>
+                                <th>Kategori</th>
                                 <th>Penulis</th>
                                 <th>Tahun</th>
                                 <th>File</th>
@@ -38,8 +39,10 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->judul }}</td>
+                                    <td>{{ $row->kategori->nama_kategori ?? '-' }}</td>
                                     <td>{{ $row->penulis }}</td>
                                     <td>{{ $row->tahun }}</td>
+                                    
                                     <td>
                                         <a href="{{ asset('storage/jurnal/' . $row->file) }}" target="_blank" class="btn btn-sm btn-info">
                                             <i class="fa fa-file-pdf-o"></i> Lihat

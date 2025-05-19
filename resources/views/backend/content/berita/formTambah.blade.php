@@ -22,6 +22,16 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="kategori_id">Kategori</label>
+                <select name="kategori_id" class="form-control" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach ($kategori as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label for="abstrak" class="form-label">Abstrak</label>
                 <textarea name="abstrak" id="abstrak" rows="4" class="form-control @error('abstrak') is-invalid @enderror">{{ old('abstrak') }}</textarea>

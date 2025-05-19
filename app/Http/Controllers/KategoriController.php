@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
 use Exception;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class KategoriController extends Controller
 {

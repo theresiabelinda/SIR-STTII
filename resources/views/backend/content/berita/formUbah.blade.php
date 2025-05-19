@@ -23,6 +23,18 @@
             @enderror
         </div>
 
+        <div class="form-group mb-3">
+            <label for="kategori_id">Kategori</label>
+            <select name="kategori_id" class="form-control @error('kategori_id') is-invalid @enderror" required>
+                <option value="">-- Pilih Kategori --</option>
+                @foreach ($kategori as $item)
+                    <option value="{{ $item->id }}" {{ $berita->kategori_id == $item->id ? 'selected' : '' }}>{{ $item->nama_kategori }}</option>
+                @endforeach
+            </select>
+            @error('kategori_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
         <div class="mb-3">
             <label for="abstrak" class="form-label">Abstrak</label>
             <textarea name="abstrak" id="abstrak" rows="4" class="form-control @error('abstrak') is-invalid @enderror">{{ old('abstrak', $berita->abstrak) }}</textarea>

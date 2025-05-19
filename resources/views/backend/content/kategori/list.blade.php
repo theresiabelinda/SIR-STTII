@@ -36,8 +36,8 @@
                                     <td>{{$no++}}</td>
                                     <td>{{$row->nama_kategori}}</td>
                                     <td>
-                                        <a href="{{route('kategori.ubah',$row->id_kategori)}}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i>Ubah</a>
-                                        <a href="{{route('kategori.hapus',$row->id_kategori)}}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary"><i class="fa fa-trash"></i>Hapus</a>
+                                        <a href="{{route('kategori.ubah',$row->id)}}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i>Ubah</a>
+                                        <a href="{{route('kategori.hapus',$row->id)}}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary"><i class="fa fa-trash"></i>Hapus</a>
                                     </td>
                                 </tr>
                             @endforeach
