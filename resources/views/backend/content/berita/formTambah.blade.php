@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2>Tambah Jurnal</h2>
+        <h2>Tambah Data</h2>
 
         @if (session('pesan'))
             <div class="alert alert-{{ session('pesan')[0] }}">

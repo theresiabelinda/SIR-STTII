@@ -49,7 +49,7 @@
                                         <a href="{{ route('berita.ubah', $row->id) }}" class="btn btn-sm btn-secondary">
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
-                                        <a href="{{ route('berita.hapus', $row->id) }}" onclick="return confirm('Yakin ingin menghapus jurnal ini?')" class="btn btn-sm btn-danger">
+                                        <a href="{{ route('berita.hapus', $row->id) }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="btn btn-sm btn-danger">
                                             <i class="fa fa-trash"></i> Hapus
                                         </a>
                                     </td>
