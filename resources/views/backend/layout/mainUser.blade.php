@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('dashboard.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -64,7 +64,7 @@
                     <span>Data Upload File</span></a>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('kategori.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Kategori</span></a>
@@ -74,7 +74,7 @@
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data User</span></a>
-            </li>
+            </li> --}}
 
 
         </ul>
@@ -95,7 +95,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form action="{{ route('berita.cari') }}" method="GET"
+                    <form action="#" method="GET"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control bg-light border-0 small"

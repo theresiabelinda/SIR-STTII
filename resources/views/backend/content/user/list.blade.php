@@ -1,9 +1,9 @@
-@extends('backend/layout/main')
+@extends('backend/layout/mainAdmin')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-                <h1 class="h3 mb-2 text-gray-800">List User</h1>
+                <h1 class="h3 mb-2 text-gray-800">List Pengguna</h1>
             </div>
             <div class="col-lg-6 text-right">
                 <a href="{{ route('user.tambah') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
@@ -23,8 +23,9 @@
                         <thead>
                             <tr>
                                 <th>Nomor</th>
-                                <th>Nama User</th>
-                                <th>Email User</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -37,6 +38,12 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
+                                    <td>
+                                        @if ($row->role == 'admin')
+                                            <span class="badge badge-success">Admin</span>
+                                        @else
+                                            <span class="badge badge-primary">User</span>
+                                        @endif
                                     <td>
                                         <a href="{{ route('user.ubah', $row->id) }}"
                                             class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i>Ubah</a>

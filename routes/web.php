@@ -25,6 +25,17 @@ Route::get('/', function () {
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'verify'])->name('auth.verify');
 
+Route::middleware(['auth:user', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboardAdmin.index');
+    // Route admin lainnya...
+});
+
+Route::middleware(['auth:user', 'role:user'])->prefix('user')->group(function () {
+    Route::get('/', function () {
+        return view('backend.content.dashboardUser'); // halaman dashboard user biasa
+    })->name('user.dashboard');
+});
+
 Route::group(['middleware' => 'auth:user'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');

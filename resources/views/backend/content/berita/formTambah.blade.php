@@ -1,4 +1,4 @@
-@extends('backend.layout.main')
+@extends('backend.layout.mainAdmin')
 
 @section('content')
     <div class="container mt-4">

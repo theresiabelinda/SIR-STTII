@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        return view('backend.content.dashboard');
+    public function index() {
+    $user = Auth::user();
+
+    if ($user->role === 'admin') {
+        return view('backend.content.dashboardAdmin'); // Admin dashboard
+    } else {
+        return view('backend.content.dashboardUser'); // User dashboard
     }
+}
 
     public function profile(){
         return view('backend.content.profile');

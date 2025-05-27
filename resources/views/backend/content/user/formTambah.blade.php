@@ -1,4 +1,4 @@
-@extends('backend/layout/main')
+@extends('backend/layout/mainAdmin')
 @section('content')
     <div class="container-fluid">
         <h1 class="h3 mb-2 text-gray-800">Form Tambah User</h1>
@@ -33,8 +33,16 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                    <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
+                    <div class="mb-3">
+                        <label class="form-label">Role User</label>
+                        <select name="role" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
                 </form>
             </div>
         </div>
