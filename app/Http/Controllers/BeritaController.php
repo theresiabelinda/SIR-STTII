@@ -49,9 +49,9 @@ class BeritaController extends Controller
 
         try {
             $berita->save();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil tambah data']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal tambah data']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil tambah data']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal tambah data']);
         }
     }
 
@@ -96,9 +96,9 @@ class BeritaController extends Controller
 
         try {
             $berita->save();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil ubah jurnal']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal ubah jurnal']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil ubah jurnal']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal ubah jurnal']);
         }
     }
 
@@ -111,9 +111,19 @@ class BeritaController extends Controller
                 Storage::delete('public/jurnal/' . $berita->file);
             }
             $berita->delete();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil hapus jurnal']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal hapus jurnal']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil hapus jurnal']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal hapus jurnal']);
         }
+    }
+
+    public function cari(Request $request)
+    {
+        $keyword = $request->input('search');
+        $berita = Berita::with('kategori')
+            ->where('judul', 'like', "%{$keyword}%")
+            ->get();
+
+        return view('backend.content.berita.list', compact('berita'));
     }
 }

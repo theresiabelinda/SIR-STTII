@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('test@example.com'),
+            'email' => 'test1@example.com',
+            'password' => bcrypt('admin123'),
         ]);
+        
 
-        DB::table('kategori')->insert([
-            'nama_kategori' => 'Skripsi'
-        ]);
+        // DB::table('kategoris')->insert([
+        //     'nama_kategori' => 'Skripsi'
+        // ]);
     }
 }
