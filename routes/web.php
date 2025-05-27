@@ -54,7 +54,9 @@ Route::group(['middleware' => 'auth:user'], function () {
         Route::get('/berita/ubah/{id}', [BeritaController::class, 'ubah'])->name('berita.ubah');
         Route::post('/berita/prosesUbah', [BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
         Route::get('/berita/hapus/{id}', [BeritaController::class, 'hapus'])->name('berita.hapus');
+        
     });
+
 
     Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
 });
