@@ -4,6 +4,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
@@ -65,7 +66,7 @@ Route::group(['middleware' => 'auth:user'], function () {
         Route::get('/berita/ubah/{id}', [BeritaController::class, 'ubah'])->name('berita.ubah');
         Route::post('/berita/prosesUbah', [BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
         Route::get('/berita/hapus/{id}', [BeritaController::class, 'hapus'])->name('berita.hapus');
-        
+        Route::get('/berita/cari', [BeritaController::class, 'cari'])->name('berita.cari');
     });
 
 
