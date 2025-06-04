@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test1@example.com',
             'password' => bcrypt('admin123'),
         ]);
+
+        
         
 
         // DB::table('kategoris')->insert([

@@ -1,4 +1,4 @@
-@extends('backend.layout.mainAdmin')
+@extends('backend.layout.main')
 
 
 @section('content')
