@@ -6,17 +6,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Kategori;
+use App\Models\berita;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        return view('backend.content.dashboard');
+    public function index() {
+    $totalBerita = berita::count();
+    $totalKategori = Kategori::count();
+    $totalUser = User::count();
+    $user = Auth::user();
+    
+    $latestBerita = berita::with('kategori')->latest()->get()->take(5);
+
+    if ($user->role === 'admin') {
+        return view('backend.content.dashboardAdmin', compact('totalBerita','totalKategori', 'totalUser', 'latestBerita')); // Admin dashboard
+    } else {
+        return view('backend.content.dashboardUser', compact('totalBerita', 'latestBerita')); // User dashboard
     }
+}
 
     public function profile(){
-        $user = auth()->user();
-        return view('backend.content.profile', compact('user')); 
+        
+        $id = Auth::guard('user')->user()->id;
+        $user = User::findOrFail($id);
+        return view('backend.content.profile', compact('user'));
     }
+
+
 
     public function resetPassword(){
         return view('backend.content.resetPassword');

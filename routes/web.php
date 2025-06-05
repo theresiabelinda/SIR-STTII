@@ -4,6 +4,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
@@ -34,6 +35,17 @@ Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->nam
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'verify'])->name('auth.verify');
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
 
+Route::middleware(['auth:user', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboardAdmin.index');
+    // Route admin lainnya...
+});
+
+Route::middleware(['auth:user', 'role:user'])->prefix('user')->group(function () {
+    Route::get('/', function () {
+        return view('backend.content.dashboardUser'); // halaman dashboard user biasa
+    })->name('user.dashboard');
+});
+
 Route::group(['middleware' => 'auth:user'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -62,7 +74,9 @@ Route::group(['middleware' => 'auth:user'], function () {
         Route::get('/berita/ubah/{id}', [BeritaController::class, 'ubah'])->name('berita.ubah');
         Route::post('/berita/prosesUbah', [BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
         Route::get('/berita/hapus/{id}', [BeritaController::class, 'hapus'])->name('berita.hapus');
+        Route::get('/berita/cari', [BeritaController::class, 'cari'])->name('berita.cari');
     });
+
 
     Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
 });

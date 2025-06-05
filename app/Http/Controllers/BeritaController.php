@@ -12,7 +12,7 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $berita  = Berita::with('kategori')->get();
+        $berita = Berita::with('kategori')->get();
         return view('backend.content.berita.list', compact('berita'));
     }
 
@@ -36,7 +36,7 @@ class BeritaController extends Controller
         $berita = new Berita();
         $berita->judul = $request->judul;
         $berita->abstrak = $request->abstrak;
-        $berita->id_kategori = $request->kategori_id; // <-- ini yang benar
+        $berita->id_kategori = $request->kategori_id;
         $berita->penulis = $request->penulis;
         $berita->tahun = $request->tahun;
 
@@ -49,9 +49,9 @@ class BeritaController extends Controller
 
         try {
             $berita->save();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil tambah data']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal tambah data']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil tambah data']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal tambah data']);
         }
     }
 
@@ -74,7 +74,6 @@ class BeritaController extends Controller
             'file' => 'nullable|mimes:pdf|max:2048'
         ]);
 
-
         $berita = Berita::findOrFail($request->id);
         $berita->judul = $request->judul;
         $berita->abstrak = $request->abstrak;
@@ -83,7 +82,6 @@ class BeritaController extends Controller
         $berita->tahun = $request->tahun;
 
         if ($request->hasFile('file')) {
-            // hapus file lama
             if ($berita->file && Storage::exists('public/jurnal/' . $berita->file)) {
                 Storage::delete('public/jurnal/' . $berita->file);
             }
@@ -96,9 +94,9 @@ class BeritaController extends Controller
 
         try {
             $berita->save();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil ubah jurnal']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal ubah jurnal']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil ubah jurnal']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal ubah jurnal']);
         }
     }
 
@@ -111,9 +109,31 @@ class BeritaController extends Controller
                 Storage::delete('public/jurnal/' . $berita->file);
             }
             $berita->delete();
-            return redirect(route('berita.index'))->with('pesan', ['success','Berhasil hapus jurnal']);
-        }catch(Exception $e){
-            return redirect(route('berita.index'))->with('pesan', ['danger','Gagal hapus jurnal']);
+            return redirect(route('berita.index'))->with('pesan', ['success', 'Berhasil hapus jurnal']);
+        } catch (Exception $e) {
+            return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal hapus jurnal']);
         }
+    }
+
+    public function cari(Request $request)
+    {
+        $keyword = $request->input('search');
+        
+        if (empty($keyword)) {
+            // Jika tidak ada keyword, redirect ke index
+            return redirect()->route('berita.index');
+        }
+
+        $berita = Berita::with('kategori')
+            ->where('judul', 'like', "%{$keyword}%")
+            ->orWhere('penulis', 'like', "%{$keyword}%")
+            ->orWhere('abstrak', 'like', "%{$keyword}%")
+            ->orWhereHas('kategori', function($query) use ($keyword) {
+                $query->where('nama_kategori', 'like', "%{$keyword}%");
+            })
+            ->get();
+
+        // Kirim keyword ke view untuk ditampilkan di search box
+        return view('backend.content.berita.list', compact('berita'))->with('keyword', $keyword);
     }
 }
