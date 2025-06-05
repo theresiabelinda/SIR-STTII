@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin123'),
         ]);
 
-        
-        
 
         // DB::table('kategoris')->insert([
         //     'nama_kategori' => 'Skripsi'

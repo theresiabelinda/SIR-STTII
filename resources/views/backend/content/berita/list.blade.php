@@ -12,7 +12,7 @@
                         <a href="{{ route('berita.index') }}" class="ml-2 text-primary">
                             <i class="fa fa-times"></i> Reset Pencarian
                         </a>
-                    </small>
+                    </small>s
                 @endif
             </div>
             <div class="col-lg-6 text-right">
