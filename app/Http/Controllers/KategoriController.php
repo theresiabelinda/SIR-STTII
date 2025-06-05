@@ -40,11 +40,11 @@ class KategoriController extends Controller
 
     public function prosesUbah(Request $request){
         $this->validate($request, [
-            'id_kategori' => 'required',
+            'id' => 'required',
             'nama_kategori' => 'required',
         ]);
 
-        $kategori = Kategori::findOrFail($request->id_kategori);
+        $kategori = Kategori::findOrFail($request->id);
         $kategori->nama_kategori = $request->nama_kategori;
 
         try{

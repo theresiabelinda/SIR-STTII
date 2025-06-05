@@ -14,7 +14,7 @@
                         <span style="color: red; font-weight: 600; font-size: 9pt">{{$message}}</span>
                         @enderror
                     </div>
-                    <input type="hidden" name="id_kategori" value="{{$kategori->id_kategori}}">
+                    <input type="hidden" name="id" value="{{$kategori->id}}">
                     <button type="submit" class="btn btn-primary">Ubah</button>
                     <a href="{{route('kategori.index')}}" class="btn btn-secondary">Kembali</a>
                 </form>

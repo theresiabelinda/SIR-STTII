@@ -23,8 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/faq', function (){
+    return view('faq');
+});
+
+Route::get('/panduan-unggah', function (){
+    return view('panduan-unggah');
+});
+
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'verify'])->name('auth.verify');
+Route::get('/berita/search', [BeritaController::class, 'search'])->name('berita.search');
 
 Route::middleware(['auth:user', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboardAdmin.index');
@@ -39,11 +48,10 @@ Route::middleware(['auth:user', 'role:user'])->prefix('user')->group(function ()
 
 Route::group(['middleware' => 'auth:user'], function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
-        Route::get('/profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('dashboard.profile');
-        Route::get('/reset-password', [App\Http\Controllers\DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
-        Route::post('/reset-password', [App\Http\Controllers\DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
-
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
+        Route::get('/reset-password', [DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
+        Route::post('/reset-password', [DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
 
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/tambah', [UserController::class, 'tambah'])->name('user.tambah');
