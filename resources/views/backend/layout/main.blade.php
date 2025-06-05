@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <title>Repository - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -31,12 +32,13 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo STTII" style="height: 50px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+                <div class="sidebar-brand-text mx-3">REPOSITORY</div>
+            </div>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -258,24 +260,22 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Natalia Evelin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('assets/img/undraw_profile.svg')}}">
+                                    src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('assets/img/undraw_profile.svg') }}">
                             </a>
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('dashboard.profile') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                        Profile
                                 </a>
+
                                 <a class="dropdown-item" href="{{route('dashboard.resetPassword')}}">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Reset Password
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

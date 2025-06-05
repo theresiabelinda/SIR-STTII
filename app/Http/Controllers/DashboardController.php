@@ -14,7 +14,8 @@ class DashboardController extends Controller
     }
 
     public function profile(){
-        return view('backend.content.profile');
+        $user = auth()->user();
+        return view('backend.content.profile', compact('user')); 
     }
 
     public function resetPassword(){

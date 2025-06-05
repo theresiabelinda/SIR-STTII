@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <title>Repository Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-color: #003366;">
 
     <div class="container">
 
@@ -36,7 +37,8 @@
                         <!-- Nested Row within Card Body -->
                         <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="120" class="mb-3">
+                                        <h1 class="h4 text-gray-900 font-bold mb-4">Repository Login</h1>
                                     </div>
 
                                     @if(session()->has('pesan')) 
@@ -48,14 +50,31 @@
                                     <form class="user" method="post" action="{{route('auth.verify')}}">
                                     @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="email-addon">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="email" name="email" class="form-control form-control-user"
+                                                    id="exampleInputEmail" aria-describedby="email-addon"
+                                                    placeholder="Email Address" required>
+                                            </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="password-addon">
+                                                        <i class="fas fa-lock"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password" name="password" class="form-control form-control-user"
+                                                    id="exampleInputPassword" 
+                                                    placeholder="Password" aria-describedby="password-addon" required>
+                                            </div>
                                         </div>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -66,19 +85,10 @@
                                         <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
                                         
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
                                     </div>
                                 </div>
                     </div>
