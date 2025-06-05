@@ -136,4 +136,15 @@ class BeritaController extends Controller
         // Kirim keyword ke view untuk ditampilkan di search box
         return view('backend.content.berita.list', compact('berita'))->with('keyword', $keyword);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $beritas = Berita::where('judul', 'like', '%' . $query . '%')
+            ->orWhere('penulis', 'like', '%' . $query . '%')
+            ->get();
+
+        return view('berita.search', compact('beritas', 'query'));
+    }
 }

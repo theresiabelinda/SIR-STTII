@@ -33,7 +33,7 @@ Route::get('/panduan-unggah', function (){
 
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'verify'])->name('auth.verify');
-Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
+Route::get('/berita/search', [BeritaController::class, 'search'])->name('berita.search');
 
 Route::middleware(['auth:user', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboardAdmin.index');

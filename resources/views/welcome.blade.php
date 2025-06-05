@@ -52,7 +52,7 @@
             <span class="text-red-900">STTII Yogyakarta</span>
         </h1>
 
-        <form method="GET" action="{{ route('search') }}" class="flex items-left gap-2 max-w-lg mx-auto mt-10">
+        <form method="GET" action="{{ route('berita.search') }}" class="flex items-left gap-2 max-w-lg mx-auto mt-10">
             <input type="text" 
             name="query" 
             placeholder="Cari judul atau kata kunci..." 
@@ -62,7 +62,7 @@
     </header>
     </div>
 
-    Features Section
+    <!-- Features Section -->
     <section class="max-w-6xl mx-auto px-6 mt-20 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
